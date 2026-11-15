@@ -18,11 +18,14 @@ public class Jugador : MonoBehaviour
     bool Saltando;
     SpriteRenderer sprite;
 
+    Animator anim;
+
     void Start()
     {
         movimiento = new Vector3();
         cuerpo = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
 
@@ -31,6 +34,37 @@ public class Jugador : MonoBehaviour
         LeerMovimiento();
         LeerSalto();
         RotarPersonaje();
+        ActualizarAnim();
+    }
+
+    private void ActualizarAnim()
+    {
+        if (movimiento.x == 0)
+        {
+            anim.SetBool("Quieto", true);
+        }
+        else
+        {
+            anim.SetBool("Quieto", false);
+        }
+
+        if (!EstaEnElSuelo())
+        {
+            anim.SetBool("Saltando", true);
+        }
+        else
+        {
+            anim.SetBool("Saltando", false);
+        }
+
+        if (Input.GetKey(KeyCode.S) && EstaEnElSuelo())
+        {
+            anim.SetBool("Agachado", true);
+        }
+        else
+        {
+            anim.SetBool("Agachado", false);
+        }
 
     }
 
