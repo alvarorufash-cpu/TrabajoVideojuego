@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    
+    public float cadencia;
+    float tiempoDisparo;
+    public Transform disparo;
+    public GameObject bala;
     public float velocidad;
     public float fuerzaSalto;
     public float distCaja;
     public Vector2 tamannoCaja;
     public LayerMask capaSuelo;
-
-
     Vector3 movimiento;
     Rigidbody2D cuerpo;
     bool Saltando;
     SpriteRenderer sprite;
-
     Animator anim;
 
     void Start()
@@ -38,16 +38,28 @@ public class Jugador : MonoBehaviour
         Atacar();
     }
 
+    private void Disparar()
+    {
+        Instantiate(bala, disparo.position, disparo.rotation);
+    }
+
     private void Atacar()
     {
+
+        tiempoDisparo -= Time.deltaTime;
+
         if (Input.GetKey(KeyCode.M) && movimiento.x ==0)
         {
             anim.SetBool("Atacar", true);
-            
         }
         else
         {
             anim.SetBool("Atacar", false);
+        }
+        if (Input.GetKey(KeyCode.M) && movimiento.x ==0 && EstaEnElSuelo() && tiempoDisparo <= 0)
+        {
+            Disparar();
+            tiempoDisparo = cadencia;
         }
     }
 
@@ -94,6 +106,7 @@ public class Jugador : MonoBehaviour
 
     private void RotarPersonaje()
     {
+        
         if (movimiento.x < 0)
         {
             sprite.flipX = true;

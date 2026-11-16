@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
+    public float cadencia;
+    float tiempoDisparo;
+    
+    public Transform disparo;
+    public GameObject bala;
     public float tiempoPatrulla;
     int direccion;
     public float velocidad;
@@ -31,6 +36,23 @@ public class Robot : MonoBehaviour
         Girar();
         ActualizarTemporizador();
         DetectarJugador();
+        Atacar();
+    }
+
+    private void Atacar()
+    {
+        tiempoDisparo -= Time.deltaTime;
+
+        if (DetectarJugador() && tiempoDisparo <= 0)
+        {
+            Disparar();
+            tiempoDisparo = cadencia;
+        }
+    }
+
+    private void Disparar()
+    {
+        Instantiate(bala, disparo.position, disparo.rotation);
     }
 
     private bool DetectarJugador()

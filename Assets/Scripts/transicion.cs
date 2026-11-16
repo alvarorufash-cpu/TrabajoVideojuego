@@ -8,6 +8,8 @@ public class transicion : MonoBehaviour
     public GameObject lvl2;
     bool pasar;
 
+    public LayerMask capaJugador;
+
     void Start()
     {
         
@@ -20,7 +22,7 @@ public class transicion : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (pasar == false)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Jugador") && pasar == false)
         {
             Camera.main.transform.position = lvl2.transform.position;
             pasar = true;
