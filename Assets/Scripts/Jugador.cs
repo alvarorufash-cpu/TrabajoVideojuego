@@ -35,6 +35,20 @@ public class Jugador : MonoBehaviour
         LeerSalto();
         RotarPersonaje();
         ActualizarAnim();
+        Atacar();
+    }
+
+    private void Atacar()
+    {
+        if (Input.GetKey(KeyCode.M) && movimiento.x ==0)
+        {
+            anim.SetBool("Atacar", true);
+            
+        }
+        else
+        {
+            anim.SetBool("Atacar", false);
+        }
     }
 
     private void ActualizarAnim()
@@ -57,7 +71,7 @@ public class Jugador : MonoBehaviour
             anim.SetBool("Saltando", false);
         }
 
-        if (Input.GetKey(KeyCode.S) && EstaEnElSuelo())
+        if (Input.GetKey(KeyCode.S) && EstaEnElSuelo() && movimiento.x ==0)
         {
             anim.SetBool("Agachado", true);
         }
