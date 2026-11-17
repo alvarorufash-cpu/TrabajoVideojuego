@@ -22,15 +22,19 @@ public class transicion : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Jugador") && pasar == false)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Jugador"))
         {
-            Camera.main.transform.position = lvl2.transform.position;
-            pasar = true;
+            if (pasar == false)
+            {
+                 Camera.main.transform.position = lvl2.transform.position;
+                 pasar = true;
+            }
+            else
+            {
+                Camera.main.transform.position = lvl1.transform.position;
+                pasar = false;
+            }  
         }
-        else
-        {
-            Camera.main.transform.position = lvl1.transform.position;
-            pasar = false;
-        }
+        
     }
 }

@@ -19,6 +19,7 @@ public class Jugador : MonoBehaviour
     bool Saltando;
     SpriteRenderer sprite;
     Animator anim;
+    bool girado;
 
     void Start()
     {
@@ -40,7 +41,18 @@ public class Jugador : MonoBehaviour
 
     private void Disparar()
     {
-        Instantiate(bala, disparo.position, disparo.rotation);
+        GameObject nuevaBala = Instantiate(bala, disparo.position, disparo.rotation);
+
+        Bala scriptBala = nuevaBala.GetComponent<Bala>();
+    
+            if (sprite.flipX)
+            {
+                scriptBala.direccion = -1; // Mira a la izquierda
+            }
+            else
+            {
+                scriptBala.direccion = 1;  // Mira a la derecha
+            }
     }
 
     private void Atacar()
@@ -106,14 +118,17 @@ public class Jugador : MonoBehaviour
 
     private void RotarPersonaje()
     {
-        
+
         if (movimiento.x < 0)
         {
             sprite.flipX = true;
+            disparo.localPosition = new Vector2(-1f, 1.42f);
         } 
+
         else if(movimiento.x > 0)
         {
             sprite.flipX = false;
+            disparo.localPosition = new Vector2(1f, 1.42f);
         }
     }
 

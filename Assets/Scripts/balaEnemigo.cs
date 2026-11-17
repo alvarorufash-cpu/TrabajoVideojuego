@@ -7,7 +7,7 @@ public class balaEnemigo : MonoBehaviour
 
     public float velocidad;
    Rigidbody2D cuerpo;
-   int direccion;
+   public int direccion;
     public LayerMask capaJugador;
     SpriteRenderer sprite;
 
@@ -15,7 +15,6 @@ public class balaEnemigo : MonoBehaviour
     void Start()
     {
         cuerpo = GetComponent<Rigidbody2D>();
-        direccion = -1;
         sprite = GetComponent<SpriteRenderer>();
     }
 

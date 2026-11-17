@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Robot : MonoBehaviour
 {
+    public float borde;
     public float cadencia;
     float tiempoDisparo;
-    
     public Transform disparo;
     public GameObject bala;
     public float tiempoPatrulla;
@@ -19,24 +19,39 @@ public class Robot : MonoBehaviour
     Rigidbody2D cuerpo;
     public float distanciaAtaque;
     public LayerMask capaJugador;
+    Vector3 movimiento;
+    Animator anim;
 
-    void Awake()
-    {
-        direccion = 1;
-    }
     void Start()
     {
+        movimiento = new Vector3(1,0,0);
+        cuerpo = GetComponent<Rigidbody2D>();
         temporizador = tiempoPatrulla;
         sprite = GetComponent<SpriteRenderer>();
         cuerpo = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         Girar();
         ActualizarTemporizador();
-        DetectarJugador();
         Atacar();
+        ActualizarAnim();
+    }
+
+    private void ActualizarAnim()
+    {
+        if (DetectarJugador())
+        {
+            anim.SetBool("Detectado", true);
+            anim.SetBool("EnAlerta", false);
+        }
+        else
+        {
+            anim.SetBool("Detectado", false);
+            anim.SetBool("EnAlerta", true);
+        }
     }
 
     private void Atacar()
@@ -52,13 +67,27 @@ public class Robot : MonoBehaviour
 
     private void Disparar()
     {
-        Instantiate(bala, disparo.position, disparo.rotation);
+
+        GameObject nuevaBala = Instantiate(bala, disparo.position, disparo.rotation);
+
+        balaEnemigo scriptBala = nuevaBala.GetComponent<balaEnemigo>();
+    
+        if (sprite.flipX)
+        {
+            scriptBala.direccion = 1; // Mira a la izquierda
+        }
+        else
+        {
+           scriptBala.direccion = -1;  // Mira a la derecha
+        }
     }
 
     private bool DetectarJugador()
     {
-       RaycastHit2D rayo = Physics2D.BoxCast(
-        transform.position, tamannoAtaque, 0, Vector2.right * direccion, distanciaAtaque, capaJugador
+
+        Vector2 origen = (Vector2) transform.position + Vector2.right * movimiento * (tamannoAtaque.x / borde);
+
+       RaycastHit2D rayo = Physics2D.BoxCast(origen, tamannoAtaque, 0, Vector2.right * movimiento, distanciaAtaque, capaJugador
        );
 
        if (rayo) return true;
@@ -70,37 +99,42 @@ public class Robot : MonoBehaviour
         temporizador -= Time.deltaTime;
         if (temporizador < 0)
         {
-            direccion *= -1;
+            movimiento *= -1;
             temporizador = tiempoPatrulla;
         }
     }
 
-    private void Girar()
+    public void Girar()
     {
-       if (direccion >= 0)
-       {
-        sprite.flipX = true;
-       }
-       else
-       {
-        sprite.flipX = false;
-       }
+         if (movimiento.x > 0)
+        {
+            sprite.flipX = true;
+            disparo.localPosition = new Vector2(0.72f, 0.07f);
+        } 
+
+        else if(movimiento.x < 0)
+        {
+            sprite.flipX = false;
+            disparo.localPosition = new Vector2(-0.72f, 0.07f);
+        }
     }
 
     void FixedUpdate()
     {
-        cuerpo.velocity = new Vector2(direccion*velocidad, cuerpo.velocity.y);
+        cuerpo.velocity = new Vector2(movimiento.x * velocidad, cuerpo.velocity.y);
     }
 
     void OnDrawGizmos()
     {
+
+        Vector3 origen = (Vector3) transform.position + Vector3.right * movimiento.x * (tamannoAtaque.x / 2f);
+
         if (DetectarJugador())
         {
             Gizmos.color = Color.red;
+            Atacar();
         }
-        Gizmos.DrawWireCube(transform.position + Vector3.right * direccion * distanciaAtaque,
-            tamannoAtaque
-        );
+        Gizmos.DrawWireCube(origen, tamannoAtaque);
         Gizmos.color = Color.white;
     }
 

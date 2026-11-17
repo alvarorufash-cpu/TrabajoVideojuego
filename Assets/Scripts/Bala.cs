@@ -7,23 +7,22 @@ public class Bala : MonoBehaviour
 {
    public float velocidad;
    Rigidbody2D cuerpo;
-   int direccion;
+   public int direccion;
     public LayerMask capaEnemigo;
     SpriteRenderer sprite;
 
     void Start()
     {
         cuerpo = GetComponent<Rigidbody2D>();
-        direccion = 1;
         sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-    
+      
     }
-
+    
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemigo"))
