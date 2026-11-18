@@ -28,7 +28,9 @@ public class balaEnemigo : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Jugador"))
         {
-            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            Jugador jugador = collision.GetComponent<Jugador>();
+            jugador.RecibeDanno(1, transform.position);
         }
     }
 

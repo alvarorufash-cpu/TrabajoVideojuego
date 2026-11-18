@@ -21,7 +21,7 @@ public class Robot : MonoBehaviour
     public LayerMask capaJugador;
     Vector3 movimiento;
     Animator anim;
-
+    public int vidaRestante;
     void Start()
     {
         movimiento = new Vector3(1,0,0);
@@ -136,6 +136,22 @@ public class Robot : MonoBehaviour
         }
         Gizmos.DrawWireCube(origen, tamannoAtaque);
         Gizmos.color = Color.white;
+    }
+
+    public void RecibeDanno(int cuanto, Vector2 posEnemigo)
+    {
+        vidaRestante -= cuanto;
+        if (vidaRestante <= 0)
+        {
+          Muerto();
+        }
+    }
+
+    public void Muerto()
+    {
+        anim.SetBool("Muerto", true);
+        GetComponent<Rigidbody2D>().simulated = false;
+        Destroy(gameObject, 1f);
     }
 
 }

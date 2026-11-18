@@ -20,6 +20,7 @@ public class Jugador : MonoBehaviour
     SpriteRenderer sprite;
     Animator anim;
     bool girado;
+    public int vidaRestante;
 
     void Start()
     {
@@ -37,6 +38,17 @@ public class Jugador : MonoBehaviour
         RotarPersonaje();
         ActualizarAnim();
         Atacar();
+    }
+
+    public void RecibeDanno(int cuanto, Vector2 posEnemigo)
+    {
+        vidaRestante -= cuanto;
+        anim.SetBool("Dano",true);
+        
+        if (vidaRestante <= 0)
+        {
+          Destroy(gameObject);   
+        }
     }
 
     private void Disparar()
@@ -63,10 +75,12 @@ public class Jugador : MonoBehaviour
         if (Input.GetKey(KeyCode.M) && movimiento.x ==0)
         {
             anim.SetBool("Atacar", true);
+            anim.SetBool("Dano", false);
         }
         else
         {
             anim.SetBool("Atacar", false);
+            anim.SetBool("Dano", false);
         }
         if (Input.GetKey(KeyCode.M) && movimiento.x ==0 && EstaEnElSuelo() && tiempoDisparo <= 0)
         {
@@ -84,11 +98,13 @@ public class Jugador : MonoBehaviour
         else
         {
             anim.SetBool("Quieto", false);
+            anim.SetBool("Dano", false);
         }
 
         if (!EstaEnElSuelo())
         {
             anim.SetBool("Saltando", true);
+            anim.SetBool("Dano", false);
         }
         else
         {
@@ -98,10 +114,12 @@ public class Jugador : MonoBehaviour
         if (Input.GetKey(KeyCode.S) && EstaEnElSuelo() && movimiento.x ==0)
         {
             anim.SetBool("Agachado", true);
+            anim.SetBool("Dano", false);
         }
         else
         {
             anim.SetBool("Agachado", false);
+            anim.SetBool("Dano", false);
         }
 
     }

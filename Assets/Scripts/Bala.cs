@@ -10,11 +10,13 @@ public class Bala : MonoBehaviour
    public int direccion;
     public LayerMask capaEnemigo;
     SpriteRenderer sprite;
+    Animator anim;
 
     void Start()
     {
         cuerpo = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,7 +29,9 @@ public class Bala : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemigo"))
         {
-            Destroy(collision.gameObject);
+            Destroy(gameObject);
+           Robot robot = collision.GetComponent<Robot>();
+           robot.RecibeDanno(1, transform.position);
         }
     }
 

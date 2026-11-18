@@ -1797,6 +1797,7 @@ MonoBehaviour:
   capaSuelo:
     serializedVersion: 2
     m_Bits: 8
+  vidaRestante: 3
 --- !u!95 &703645600
 Animator:
   serializedVersion: 5
@@ -3714,6 +3715,7 @@ MonoBehaviour:
   capaJugador:
     serializedVersion: 2
     m_Bits: 64
+  vidaRestante: 2
 --- !u!95 &1949033345
 Animator:
   serializedVersion: 5

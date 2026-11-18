@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 6
+  direccion: 1
   capaEnemigo:
     serializedVersion: 2
     m_Bits: 128
