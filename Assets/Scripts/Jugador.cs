@@ -21,6 +21,7 @@ public class Jugador : MonoBehaviour
     Animator anim;
     bool girado;
     public int vidaRestante;
+    bool agachado = false;
 
     void Start()
     {
@@ -82,14 +83,14 @@ public class Jugador : MonoBehaviour
             anim.SetBool("Atacar", false);
             anim.SetBool("Dano", false);
         }
-        if (Input.GetKey(KeyCode.M) && movimiento.x ==0 && EstaEnElSuelo() && tiempoDisparo <= 0)
+        if (Input.GetKey(KeyCode.M) && movimiento.x ==0 && EstaEnElSuelo() && tiempoDisparo <= 0 && agachado == false)
         {
             Disparar();
             tiempoDisparo = cadencia;
         }
     }
 
-    private void ActualizarAnim()
+    private bool ActualizarAnim()
     {
         if (movimiento.x == 0)
         {
@@ -115,13 +116,15 @@ public class Jugador : MonoBehaviour
         {
             anim.SetBool("Agachado", true);
             anim.SetBool("Dano", false);
+            return agachado = true;
+
         }
         else
         {
             anim.SetBool("Agachado", false);
             anim.SetBool("Dano", false);
         }
-
+        return agachado = false;
     }
 
     void FixedUpdate()
