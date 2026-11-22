@@ -22,6 +22,7 @@ public class Robot : MonoBehaviour
     Vector3 movimiento;
     Animator anim;
     public int vidaRestante;
+
     void Start()
     {
         movimiento = new Vector3(1,0,0);
@@ -152,6 +153,7 @@ public class Robot : MonoBehaviour
         anim.SetBool("Muerto", true);
         GetComponent<Rigidbody2D>().simulated = false;
         Destroy(gameObject, 1f);
+        
     }
 
 }

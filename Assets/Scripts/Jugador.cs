@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Jugador : MonoBehaviour
 {
@@ -124,6 +125,7 @@ public class Jugador : MonoBehaviour
             anim.SetBool("Agachado", false);
             anim.SetBool("Dano", false);
         }
+
         return agachado = false;
     }
 
@@ -182,15 +184,14 @@ public class Jugador : MonoBehaviour
         RaycastHit2D rc = Physics2D.BoxCast(transform.position, tamannoCaja, 0, Vector2.down, distCaja, capaSuelo);
         if (rc)
         {
-            Debug.Log("Esta en el suelo");
             return true;
         }
         else
         {
-            Debug.Log("No esta en el suelo");
             return false;    
         }
     }
+
 
     void OnDrawGizmos()
     {
