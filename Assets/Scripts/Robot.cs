@@ -10,6 +10,8 @@ public class Robot : MonoBehaviour
     float tiempoDisparo;
     public Transform disparo;
     public GameObject bala;
+    public GameObject cura = null;
+    public Transform posicionCuracion;
     public float tiempoPatrulla;
     int direccion;
     public float velocidad;
@@ -83,6 +85,15 @@ public class Robot : MonoBehaviour
         }
     }
 
+    private void DaCura()
+    {
+        if (cura != null)
+        {
+            GameObject nuevaCuracion = Instantiate(cura, posicionCuracion.position, posicionCuracion.rotation);
+            curacion spritCuracion = nuevaCuracion.GetComponent<curacion>();
+        }
+    }
+
     private bool DetectarJugador()
     {
 
@@ -151,8 +162,10 @@ public class Robot : MonoBehaviour
     public void Muerto()
     {
         anim.SetBool("Muerto", true);
+        DaCura();
         GetComponent<Rigidbody2D>().simulated = false;
         Destroy(gameObject, 1f);
+        
         
     }
 
