@@ -9,6 +9,9 @@ public class ordenador : MonoBehaviour
     bool jugadorDentro;
     public LayerMask capaJugador;
     Animator anim;
+    public GameObject powerUp;
+    public Transform posicion;
+     int contador = 0;
 
     void Start()
     {
@@ -19,15 +22,20 @@ public class ordenador : MonoBehaviour
     {
         if (jugadorDentro && Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("He presionado la tecla Q dentro del ordenador");
+
+            if (contador == 0)
+            {
+                GameObject nuevoPowerUp = Instantiate(powerUp, posicion.position, posicion.rotation);
+                contador = 1;
+            }
             torreta.bala = null;
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-            Debug.Log("El jugador esta en el ordenador");
-           jugadorDentro = true;
+
+        jugadorDentro = true;
     }
 
 }

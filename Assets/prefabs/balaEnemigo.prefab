@@ -172,6 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 4
+  direccion: 0
   capaJugador:
     serializedVersion: 2
     m_Bits: 64
+  temporizador: 2.5

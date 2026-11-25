@@ -22,8 +22,11 @@ public class Jugador : MonoBehaviour
     SpriteRenderer sprite;
     Animator anim;
     bool girado;
-    public int vidaRestante;
+    public int vidaRestante = 3;
     bool agachado = false;
+    public float temporizador;
+
+    public Transform reaparece;
 
     void Start()
     {
@@ -50,7 +53,7 @@ public class Jugador : MonoBehaviour
         
         if (vidaRestante <= 0)
         {
-          Destroy(gameObject);   
+            transform.position = reaparece.transform.position;
         }
     }
 
@@ -68,7 +71,7 @@ public class Jugador : MonoBehaviour
             else
             {
                 scriptBala.direccion = 1;  // Mira a la derecha
-            }
+            }    
     }
 
     private void Atacar()

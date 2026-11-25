@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
+    public Transform reaparece;
     void Start()
     {
         
@@ -16,9 +17,9 @@ public class Laser : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Jugador>())
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Jugador"))
         {
-            Destroy(collision.gameObject);
+            collision.transform.position = reaparece.transform.position;
         }
     }
 }

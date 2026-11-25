@@ -11,6 +11,7 @@ public class Bala : MonoBehaviour
     public LayerMask capaEnemigo;
     SpriteRenderer sprite;
     Animator anim;
+    public float temporizador;
 
     void Start()
     {
@@ -22,7 +23,7 @@ public class Bala : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+      tiempoVida();
     }
     
     void OnTriggerEnter2D(Collider2D collision)
@@ -38,6 +39,16 @@ public class Bala : MonoBehaviour
     void FixedUpdate()
     {
         cuerpo.velocity = new Vector2(direccion*velocidad, cuerpo.velocity.y);
+    }
+
+    void tiempoVida()
+    {
+        temporizador  -= Time.deltaTime;
+       
+        if (temporizador <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

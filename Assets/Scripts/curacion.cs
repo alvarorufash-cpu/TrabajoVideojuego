@@ -40,8 +40,11 @@ public class curacion : MonoBehaviour
         {
             Jugador jugador = collision.GetComponent<Jugador>();
 
-            jugador.vidaRestante += 1;
-            Destroy(gameObject);
+            if (jugador.vidaRestante < 3)
+            {
+                jugador.vidaRestante += 1;
+                Destroy(gameObject); 
+            }
         }
     }
     

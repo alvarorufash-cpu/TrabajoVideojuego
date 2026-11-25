@@ -37,11 +37,13 @@ public class poweUp : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Jugador"))
         {
+
             Jugador jugador = collision.GetComponent<Jugador>();
+            SpriteRenderer sprite = collision.GetComponent<SpriteRenderer>();
 
             jugador.velocidad *= 2f;
             jugador.cadencia =0.3f;
-
+            
             Destroy(gameObject);
         }
     }

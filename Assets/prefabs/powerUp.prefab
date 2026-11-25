@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiempo: 0
   cambio: 0.6
+  temporizador: 10
 --- !u!50 &6888268405760118429
 Rigidbody2D:
   serializedVersion: 4
