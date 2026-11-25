@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -62,6 +63,7 @@ public class Jugador : MonoBehaviour
             if (sprite.flipX)
             {
                 scriptBala.direccion = -1; // Mira a la izquierda
+                
             }
             else
             {

@@ -23,9 +23,9 @@ public class letras_teclado : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Jugador"))
         {
-            Tecla1.SetActive(true);
-            Tecla2.SetActive(true);
-            Tecla3.SetActive(true);
+            if(Tecla1 != null) Tecla1.SetActive(true);
+            if(Tecla2 != null) Tecla2.SetActive(true);
+            if(Tecla3 != null)Tecla3.SetActive(true);
         }
     }
 
@@ -33,9 +33,9 @@ public class letras_teclado : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Jugador"))
         {
-            Tecla1.SetActive(false);
-        Tecla2.SetActive(false);
-        Tecla3.SetActive(false);
+            if(Tecla1 != null) Tecla1.SetActive(false);
+            if(Tecla2 != null) Tecla2.SetActive(false);
+            if(Tecla3 != null) Tecla3.SetActive(false);
         }
     }
 
