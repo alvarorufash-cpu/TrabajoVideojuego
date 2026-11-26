@@ -43,6 +43,7 @@ public class curacion : MonoBehaviour
             if (jugador.vidaRestante < 3)
             {
                 jugador.vidaRestante += 1;
+                jugador.ActualizarCorazones();
                 Destroy(gameObject); 
             }
         }

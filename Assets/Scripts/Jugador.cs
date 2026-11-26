@@ -28,12 +28,19 @@ public class Jugador : MonoBehaviour
 
     public Transform reaparece;
 
+    public GameObject[] corazones;
+    
+    int vidaMaxima = 3;
+
     void Start()
     {
         movimiento = new Vector3();
         cuerpo = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        
+        vidaRestante = vidaMaxima;
+        ActualizarCorazones();
     }
 
 
@@ -49,11 +56,19 @@ public class Jugador : MonoBehaviour
     public void RecibeDanno(int cuanto, Vector2 posEnemigo)
     {
         vidaRestante -= cuanto;
-        anim.SetBool("Dano",true);
+        ActualizarCorazones();
         
         if (vidaRestante <= 0)
         {
             transform.position = reaparece.transform.position;
+        }
+    }
+
+    public void ActualizarCorazones()
+    {
+        for (int i = 0; i < corazones.Length; i++)
+        {
+            corazones[i].SetActive(i < vidaRestante);
         }
     }
 
