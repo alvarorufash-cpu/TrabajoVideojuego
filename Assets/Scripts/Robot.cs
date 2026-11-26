@@ -24,9 +24,14 @@ public class Robot : MonoBehaviour
     Vector3 movimiento;
     Animator anim;
     public int vidaRestante;
+    public AudioSource altavoz;
+    public AudioClip dano;
+    public AudioClip sonidoDisparo;
+    public AudioClip explosion;
 
     void Start()
     {
+        altavoz = GetComponent<AudioSource>();
         movimiento = new Vector3(1,0,0);
         cuerpo = GetComponent<Rigidbody2D>();
         temporizador = tiempoPatrulla;
@@ -70,6 +75,8 @@ public class Robot : MonoBehaviour
 
     private void Disparar()
     {
+
+        altavoz.PlayOneShot(sonidoDisparo);
 
         GameObject nuevaBala = Instantiate(bala, disparo.position, disparo.rotation);
 
@@ -152,16 +159,20 @@ public class Robot : MonoBehaviour
 
     public void RecibeDanno(int cuanto, Vector2 posEnemigo)
     {
+
+        altavoz.PlayOneShot(dano);
+
         vidaRestante -= cuanto;
         if (vidaRestante <= 0)
         {
           Muerto();
-        }
+        } 
     }
 
     public void Muerto()
     {
         anim.SetBool("Muerto", true);
+        altavoz.PlayOneShot(explosion);
         DaCura();
         GetComponent<Rigidbody2D>().simulated = false;
         Destroy(gameObject, 1f);

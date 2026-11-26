@@ -149,7 +149,7 @@ MonoBehaviour:
   capaEnemigo:
     serializedVersion: 2
     m_Bits: 128
-  temporizador: 2.5
+  temporizador: 1.5
 --- !u!50 &1980315052831016762
 Rigidbody2D:
   serializedVersion: 4

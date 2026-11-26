@@ -31,9 +31,13 @@ public class Jugador : MonoBehaviour
     public GameObject[] corazones;
     
     int vidaMaxima = 3;
+    public AudioSource altavoz;
+    public AudioClip dano;
+    public AudioClip sonidoDisparo;
 
     void Start()
     {
+        altavoz = GetComponent<AudioSource>();
         movimiento = new Vector3();
         cuerpo = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
@@ -55,6 +59,9 @@ public class Jugador : MonoBehaviour
 
     public void RecibeDanno(int cuanto, Vector2 posEnemigo)
     {
+
+        altavoz.PlayOneShot(dano);
+
         vidaRestante -= cuanto;
         ActualizarCorazones();
         
@@ -74,6 +81,9 @@ public class Jugador : MonoBehaviour
 
     private void Disparar()
     {
+
+        altavoz.PlayOneShot(sonidoDisparo);
+
         GameObject nuevaBala = Instantiate(bala, disparo.position, disparo.rotation);
 
         Bala scriptBala = nuevaBala.GetComponent<Bala>();

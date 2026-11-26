@@ -31,10 +31,12 @@ Material:
     m_Floats:
     - _GradientScale: 10
     - _ScaleRatioA: 0.9
-    - _ScaleRatioC: 0.73125
+    - _ScaleRatioB: 0.7875
+    - _ScaleRatioC: 0.7875
     - _TextureHeight: 1024
     - _TextureWidth: 1024
-    m_Colors: []
+    m_Colors:
+    - _FaceColor: {r: 1, g: 0.56069016, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &11400000
 MonoBehaviour:
