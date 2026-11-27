@@ -19,7 +19,10 @@ public class Caer : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Jugador"))
         {
-            collision.transform.position = reaparece.transform.position;
+            Jugador jugador = collision.GetComponent<Jugador>();
+            jugador.transform.position = reaparece.transform.position;
+            jugador.vidaRestante = jugador.vidaMaxima;
+            jugador.ActualizarCorazones();
         }
     }
 }

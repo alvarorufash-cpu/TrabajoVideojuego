@@ -28197,6 +28197,7 @@ MonoBehaviour:
   - {fileID: 2074007876}
   - {fileID: 464379546}
   - {fileID: 1346598559}
+  vidaMaxima: 3
   altavoz: {fileID: 0}
   dano: {fileID: 8300000, guid: f1d689a86a077d54aa90bc48851f76fe, type: 3}
   sonidoDisparo: {fileID: 8300000, guid: 796e17ec5d9ec3c479a32d647d523cb6, type: 3}
@@ -42632,9 +42633,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 551068416913035945, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 551068416913035945, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 551068416913035945, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 551068416913035945, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2804789697229064091, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5522715698142625549, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 111d997e82831694997cccd67af87a99, type: 3}
+    - target: {fileID: 5526151995534828153, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 111d997e82831694997cccd67af87a99, type: 3}
+    - target: {fileID: 6963964978022573959, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6963964978022573959, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7328773742785781428, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
       propertyPath: m_Pivot.x
@@ -42716,6 +42749,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7665519066746983788, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665519066746983788, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929269156549002712, guid: cd2ece10469f95c45a931edb50b24748, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 111d997e82831694997cccd67af87a99, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

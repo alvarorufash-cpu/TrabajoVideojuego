@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -30,7 +29,7 @@ public class Jugador : MonoBehaviour
 
     public GameObject[] corazones;
     
-    int vidaMaxima = 3;
+    public int vidaMaxima = 3;
     public AudioSource altavoz;
     public AudioClip dano;
     public AudioClip sonidoDisparo;
@@ -68,6 +67,8 @@ public class Jugador : MonoBehaviour
         if (vidaRestante <= 0)
         {
             transform.position = reaparece.transform.position;
+            vidaRestante = vidaMaxima;
+            ActualizarCorazones();
         }
     }
 
